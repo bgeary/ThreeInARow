@@ -1,9 +1,60 @@
 <html>
 
 <head>
-
+<meta name="viewport" content="width=device-width,height=device-height,initial-scale=1"
 <link rel="stylesheet" type="text/css" href="tir.css">
+<script type="text/javascript" charset="utf-8" src="phonegap.js"></script>
 <script type="text/javascript" src="tir.js"></script>
+
+<script type="text/javascript" charset="utf-8">
+    var pictureSource;   // picture source
+    var destinationType; // sets the format of returned value 
+
+    // Wait for PhoneGap to connect with the device
+    //
+    document.addEventListener("deviceready",onDeviceReady,false);
+
+    // PhoneGap is ready to be used!
+    //
+    function onDeviceReady() {
+        pictureSource=navigator.camera.PictureSourceType;
+        destinationType=navigator.camera.DestinationType;
+    }
+
+	// Called when a photo is successfully retrieved
+    //
+    function onPhotoDataSuccess(imageData) {
+      // Get image handle
+      //
+      var smallImage = document.getElementById('smallImage');
+
+      // Unhide image elements
+      //
+      smallImage.style.display = 'block';
+
+      // Show the captured photo
+      // The inline CSS rules are used to resize the image
+      //
+      smallImage.src = "data:image/jpeg;base64," + imageData;
+    }
+	
+	    // A button will call this function
+    //
+    function capturePhotoWithData() {
+      // Take picture using device camera and retrieve image as base64-encoded string
+      navigator.camera.getPicture(onPhotoDataSuccess, onFail, { quality: 50, destinationType: Camera.DestinationType.DATA_URL });
+    }
+
+	
+	 // Called if something bad happens.
+    // 
+    function onFail(message) {
+      alert('Failed because: ' + message);
+    }
+
+	
+</script>
+
 
 <style>
 
@@ -69,6 +120,9 @@ border: 1px #70b8ff dashed;
 <p>
 <table>
 <tr><td>Players:&nbsp;&nbsp;</td><td>X:&nbsp;Brian</td><td>Y:&nbsp;Tara</td></tr>
+
+<tr><td colspan=3""><button onclick="capturePhotoWithData();">Capture Photo With Image Data</button> <img style="display:none;width:60px;height:60px;" id="smallImage" src="" /></td></tr>
+
 <tr><td>scores&nbsp;&nbsp;</td><td>0</td><td>0</td></tr>
 <tr><td colspan=3"">ties: </td></tr>
 </table>

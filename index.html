@@ -1,6 +1,10 @@
 <html>
 
 <head>
+
+<link rel="stylesheet" type="text/css" href="tir.css">
+<script type="text/javascript" src="tir.js"></script>
+
 <style>
 
 body {
@@ -41,11 +45,27 @@ border: 1px #70b8ff dashed;
 <p>
 <ul>
 <li class="play">Play
-<li class="newgame">New Game
+<li><a class="newgame" href="" onclick="clearGame()">New Game</a></li>
+
 </ul>
 </p>
-<img src="board.png">
 
+
+<div>
+
+			<img id="board" src="board.png" />
+			<img id="box1" src="blank.png" onclick="toggleBox('box1')" />
+			<img id="box2" src="blank.png" onclick="toggleBox('box2')" />
+			<img id="box3" src="blank.png" onclick="toggleBox('box3')" />
+			<img id="box4" src="blank.png" onclick="toggleBox('box4')" />
+			<img id="box5" src="blank.png" onclick="toggleBox('box5')" />
+			<img id="box6" src="blank.png" onclick="toggleBox('box6')" />
+			<img id="box7" src="blank.png" onclick="toggleBox('box7')" />
+			<img id="box8" src="blank.png" onclick="toggleBox('box8')" />
+			<img id="box9" src="blank.png" onclick="toggleBox('box9')" />
+</div>
+		
+		
 <p>
 <table>
 <tr><td>Players:&nbsp;&nbsp;</td><td>X:&nbsp;Brian</td><td>Y:&nbsp;Tara</td></tr>
